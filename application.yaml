@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: node-hello-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/ishankush01/node-app-configuration.git'
+    targetRevision: HEAD
+    path: node-app-helm
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: shivam
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
